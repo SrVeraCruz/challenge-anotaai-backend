@@ -4,19 +4,17 @@ import com.veracruz.desafioAnotaai.domain.product.Product;
 import com.veracruz.desafioAnotaai.domain.product.ProductDTO;
 import com.veracruz.desafioAnotaai.domain.product.exceptions.ProductNotFoundException;
 import com.veracruz.desafioAnotaai.services.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/product")
 public class ProductController {
-    private ProductService service;
-
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
+    private final ProductService service;
 
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {

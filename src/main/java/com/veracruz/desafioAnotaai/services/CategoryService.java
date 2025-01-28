@@ -4,18 +4,16 @@ import com.veracruz.desafioAnotaai.domain.category.Category;
 import com.veracruz.desafioAnotaai.domain.category.CategoryDTO;
 import com.veracruz.desafioAnotaai.domain.category.exceptions.CategoryNotFoundException;
 import com.veracruz.desafioAnotaai.repositories.CategoryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryService {
-    private CategoryRepository repository;
-
-    public CategoryService(CategoryRepository repository) {
-        this.repository = repository;
-    }
+    private final CategoryRepository repository;
 
     public List<Category> getAll() {
         return this.repository.findAll();

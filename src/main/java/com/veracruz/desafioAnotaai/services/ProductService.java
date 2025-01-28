@@ -5,20 +5,20 @@ import com.veracruz.desafioAnotaai.domain.product.Product;
 import com.veracruz.desafioAnotaai.domain.product.ProductDTO;
 import com.veracruz.desafioAnotaai.domain.product.exceptions.ProductNotFoundException;
 import com.veracruz.desafioAnotaai.repositories.ProductRepository;
+import com.veracruz.desafioAnotaai.services.aws.AwsSnsService;
+import com.veracruz.desafioAnotaai.services.aws.MessageDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    private ProductRepository repository;
-    private CategoryService categoryService;
-
-    public ProductService(ProductRepository repository, CategoryService categoryService) {
-        this.repository = repository;
-        this.categoryService = categoryService;
-    }
+    private final ProductRepository repository;
+    private final CategoryService categoryService;
+    private final AwsSnsService snsService;
 
     public List<Product> getAll() {
         return this.repository.findAll();
@@ -33,6 +33,9 @@ public class ProductService {
 
         Product newProduct = new Product(productData);
         this.repository.save(newProduct);
+
+        this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+
         return newProduct;
     }
 
@@ -52,6 +55,9 @@ public class ProductService {
         if (!(productData.price() == null)) updatedProduct.setPrice(productData.price());
 
         this.repository.save(updatedProduct);
+
+        this.snsService.publish(new MessageDTO(updatedProduct.getOwnerId()));
+
         return updatedProduct;
     }
 
