@@ -4,19 +4,17 @@ import com.veracruz.desafioAnotaai.domain.category.Category;
 import com.veracruz.desafioAnotaai.domain.category.CategoryDTO;
 import com.veracruz.desafioAnotaai.domain.category.exceptions.CategoryNotFoundException;
 import com.veracruz.desafioAnotaai.services.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/category")
 public class CategoryController {
     private CategoryService service;
-
-    public CategoryController(CategoryService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public ResponseEntity<List<Category>> getAll() {
