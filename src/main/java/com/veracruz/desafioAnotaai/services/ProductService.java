@@ -34,7 +34,7 @@ public class ProductService {
         Product newProduct = new Product(productData);
         this.repository.save(newProduct);
 
-        this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+        this.snsService.publish(new MessageDTO(newProduct.toString()));
 
         return newProduct;
     }
@@ -56,7 +56,7 @@ public class ProductService {
 
         this.repository.save(updatedProduct);
 
-        this.snsService.publish(new MessageDTO(updatedProduct.getOwnerId()));
+        this.snsService.publish(new MessageDTO(updatedProduct.toString()));
 
         return updatedProduct;
     }
@@ -66,5 +66,6 @@ public class ProductService {
             .orElseThrow(ProductNotFoundException::new);
 
         this.repository.delete(product);
+        this.snsService.publish(new MessageDTO(product.deleteToString()));
     }
 }
