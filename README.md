@@ -43,6 +43,16 @@ aws.secretKey=${AWS_SECRET}
 AWS_KEY_ID=VALUE;AWS_SECRET=VALUE2
 ```
 
+**Lambda Trigger**
+
+1. Create a Lambda function on AWS, listening on your SQS queue.
+
+2. Configure a lambda trigger with the code on this repository.
+
+```bash
+git clone https://github.com/SrVeraCruz/lambda-catalog-generator.git
+```
+
 **Mongo**
 
 1. Create a DB for mongo using mongo express: http://localhost:8081.
@@ -101,7 +111,3 @@ DELETE /api/category/{id} - Delete a category
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request to the repository.
 
 When contributing to this project, please follow the existing code style, [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/), and submit your changes in a separate branch.
-
-
-
-
