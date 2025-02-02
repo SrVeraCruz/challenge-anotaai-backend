@@ -13,10 +13,8 @@ The Microservice was developed to demonstrate how to solve the [AnotaAi Backend 
 ## Table of Contents
 
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Database](#database)
 - [Contributing](#contributing)
 
 ## Installation
@@ -50,7 +48,7 @@ AWS_KEY_ID=VALUE;AWS_SECRET=VALUE2
 2. Configure a lambda trigger with the code on this repository.
 
 ```bash
-git clone https://github.com/SrVeraCruz/lambda-catalog-generator.git
+git clone https://github.com/SrVeraCruz/lambda-catalog-trigger.git
 ```
 
 **Mongo**
